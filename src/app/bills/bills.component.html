@@ -1,0 +1,36 @@
+<br>
+<h6 class="display-4 text-center"><img src="/assets/img/factura.jpg" alt="">Facturación</h6>
+<div class="container">
+  <div class="row">
+    <div class="col-md-1 offset-md-1">
+
+    </div>
+  </div>
+</div>
+
+<div class="form-group04">
+    <table class="table table-hover">
+     <thead class="thead-light">
+         <th>Factura Número</th>
+         <th>Cliente</th>
+         <th>Tipo Pago</th>
+         <th>Total</th>
+         <th>
+             <button class="btn btn-outline-success" (click) = "runFactura()"><i class="fa fa-plus-square"></i> Nueva Factura</button>
+         </th>
+     </thead>
+ 
+     <tbody>
+
+      <tr *ngFor = "let item of facturasList">
+         <th (click) = "openForEdit(item.idBill, item.billNo,item.idCliente,item.pMethod,item.gTotal)">{{item.idBill}}</th>
+         <td (click) = "openForEdit(item.idBill, item.billNo,item.idCliente,item.pMethod,item.gTotal)">{{item.nombreCliente}}</td>
+         <td (click) = "openForEdit(item.idBill, item.billNo,item.idCliente,item.pMethod,item.gTotal)">{{item.pMethod}}</td>
+         <td (click) = "openForEdit(item.idBill, item.billNo,item.idCliente,item.pMethod,item.gTotal)">{{item.gTotal}}</td>
+         <td>
+           <a class="btn text-danger" (click) = "deleteFactura(item.idBill)"><i class="fa fa-trash fa-lg"></i></a>
+         </td>
+      </tr>
+     </tbody>
+    </table>
+ </div>

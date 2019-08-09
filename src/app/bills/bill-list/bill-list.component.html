@@ -1,0 +1,73 @@
+<br>
+<h6 class="display-4 text-center"><img src="/assets/img/factura.jpg" alt="">Facturación</h6>
+<div class="container">
+  <div class="row">
+    <div class="col-md-1 offset-md-1">
+
+    </div>
+  </div>
+</div>
+
+<div class = "search-div">
+  <button class="btn btn-outline-success"  (click) = "onCreate()">
+    <i class="fa fa-plus-square"></i> Nueva Factura
+  </button>
+
+  <mat-form-field class = "search-form-field" floatLabel = "never">
+    <input matInput [(ngModel)] = "searchKey" placeholder="Buscar..." autocomplete="off" (keyup) = "applyFilter()">
+
+    <button mat-button matSuffix mat-icon-button aria-label = "Clear" *ngIf = "searchKey" (click) = "onSearchClear()">
+      <mat-icon>close</mat-icon>
+    </button>
+  </mat-form-field>
+</div>
+
+<div class = "mat-elevation-z8">
+  <mat-table [dataSource] = "listData" matSort>
+    <ng-container matColumnDef = "idBill">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Nro. Factura</mat-header-cell>
+      <mat-cell *matCellDef = "let element">{{element.idBill}}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef = "fechaCorta">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Fecha</mat-header-cell>
+      <mat-cell *matCellDef = "let element">{{element.fechaCorta}}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef = "nombreCliente">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>Cliente</mat-header-cell>
+        <mat-cell *matCellDef = "let element">{{element.nombreCliente}}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef = "pMethod">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>Forma Pago</mat-header-cell>
+        <mat-cell *matCellDef = "let element">{{element.pMethod}}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef = "gTotal">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>Total $</mat-header-cell>
+        <mat-cell *matCellDef = "let element">{{element.gTotal}}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="actions">
+        <mat-header-cell *matHeaderCellDef></mat-header-cell>
+        <mat-cell *matCellDef="let row"> 
+          <button mat-icon-button (click)="onEdit(row)"><mat-icon color="primary">edit</mat-icon></button>
+          <button mat-icon-button color="warn" (click)="onDelete(row)"><mat-icon>delete</mat-icon></button>
+        </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef = "loading">
+      <mat-footer-cell *matFooterCellDef colspan ="6">
+          Cargando Información...
+      </mat-footer-cell>
+
+    </ng-container>
+    <mat-header-row *matHeaderRowDef = "displayedColumns"></mat-header-row>
+    <mat-row *matRowDef = "let row; columns: displayedColumns;"></mat-row>
+
+    <mat-footer-row *matFooterRowDef = "['loading']" [ngClass] = "{'hide' : listData != null}"></mat-footer-row>
+  </mat-table>
+
+  <mat-paginator [pageSizeOptions] = "[10,25,50,100]" [pageSize] = "10" showFirstLastButtons></mat-paginator>
+</div>

@@ -1,0 +1,29 @@
+<mat-toolbar color="primary">
+  
+    <mat-toolbar-row>
+      <span>Administrativo</span>
+      <span class="example-spacer"></span>
+      <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+          <mat-icon>more_vert</mat-icon>
+        </button>
+        <mat-menu #menu="matMenu"> 
+
+         <button mat-menu-item  (click) = "navegar('')">
+           <mat-icon>home</mat-icon>
+           <span>Home</span>
+         </button>
+    
+
+          <button mat-menu-item (click) = "navegar('cuentas')">
+            <mat-icon>account_balance</mat-icon>
+            <span>Cuentas Contables</span>
+          </button>
+
+          <button mat-menu-item (click) = "navegar('empleados')">
+            <mat-icon>account_box</mat-icon>
+            <span>Empleados</span>
+          </button>
+        </mat-menu>
+    </mat-toolbar-row>
+  
+  </mat-toolbar>

@@ -1,0 +1,110 @@
+<br>
+<h6 class="display-4 text-center"><img src="/assets/img/factura.jpg" alt="">Facturación</h6>
+<div class="container">
+  <div class="row">
+    <div class="col-md-1 offset-md-1">
+
+    </div>
+  </div>
+</div>
+
+<form #form="ngForm" autocomplete="off" *ngIf="service.formData" (submit) = "onSubmit(form)">
+    <input type = "hidden" name = "idBill" #idBill = "ngModel" [(ngModel)] = "service.formData.idBill">
+    <div class="row">
+      <div class="col-md-4">
+        <div class="form-group05">
+          <label class = "bold">Factura No.</label>
+          <div class="input-group">
+              <div class="input-group-prepend">
+                <div class="input-group-text">#</div>
+              </div>
+              <input name ="idBill" #idBill="ngModel" [(ngModel)]="service.formData.idBill" class="form-control" readonly>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="form-group06">
+          <label class = "bold">Fecha</label>
+          <div class="input-group">
+            <input name ="fehaCorta" #fechaCorta="ngModel" [(ngModel)]="service.formData.fechaCorta" class="form-control" readonly>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="form-group07"> 
+          <label class = "bold">Método de Pago</label>
+          <select name ="pMethod" #pMethod="ngModel" [(ngModel)]="service.formData.pMethod" class="form-control">
+              <option value="">-Seleccione-</option>
+              <option value="transferencia">Transferencia</option>
+              <option value="deposito">Depósito</option>
+              <option value="cheque">Cheque</option>
+              <option value="cash">Efectivo</option>
+            </select>  
+          </div>
+      </div>
+    </div>
+    
+    <div class = "row">
+      <div class = "col-md-6">
+        <div class="form-group01">
+          <label class = "bold">Cliente</label>
+          <select name ="idCliente" #idCliente="ngModel" [(ngModel)]="service.formData.idCliente" class="form-control"
+            [class.is-invalid] = "!isValid && service.formData.idCliente == 0">
+            <option value="0">-Seleccione-</option>
+            <option *ngFor = "let item of clienteList" value="{{item.idCliente}}">{{item.descripcion}}</option>
+          </select>  
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <div class="form-group02">
+          <label class = "bold">Total</label>
+          <div class="input-group">
+              <div class="input-group-prepend">
+                <div class="input-group-text">$</div>
+              </div>
+              <input name ="gTotal" #gTotal="ngModel" [(ngModel)]="service.formData.gTotal" class="form-control" readonly>
+          </div>
+        </div>
+      </div>
+    </div>
+  <div class="tabla01">
+      <table class="table table-borderless">
+          <thead class="thead-light">
+            <th>Producto</th>
+            <th>Precio</th>
+            <th>Cantidad</th>
+            <th>Total</th>
+            <th> 
+              <a class="btn btn-sm btn-success text-white" (click)="addOrEdit(null,service.formData.idBill)">
+                <i class="fa fa-plus"> Agregar Producto</i></a>
+            </th>
+          </thead>
+          <tbody>
+            <tr *ngIf = "service.facturaItems.length==0" [class.text-danger] = "!isValid 
+              && service.facturaItems.length == 0">
+              <td class="font-italic text-center" colspan="5">
+                Factura vacía.
+              </td>
+        
+            </tr>
+        
+            <tr *ngFor = "let item of service.facturaItems;let iVar=index;">
+              <td>{{item.itemName}}</td>
+              <td>{{item.Precio}}</td>
+              <td>{{item.Quantity}}</td>
+              <td>{{item.Total}}</td>
+              <td>
+                <a class="btn btn-sm btn-info text-white" (click)="addOrEdit(iVar,service.formData.idBill)"><i class="fa fa-pencil"></i></a>
+                <a class="btn btn-sm btn-danger text-white ml-1" (click)="onDelete(item.billDetailId, iVar)"><i class="fa fa-trash"></i></a>
+              </td>
+            </tr>      
+          </tbody>
+        </table>
+        
+  </div>
+  <div class="form-group03">
+    <button type="submit" class="btn btn-primary"><i class="fa fa-save"></i> Guardar</button>
+    <button class="btn btn-outline-dark ml-1" (click) = "viewFacturas()"><i class="fa fa-binoculars"></i> Visualizar Facturas</button>
+  </div>
+  </form>

@@ -1,0 +1,52 @@
+<h4 class="display-5">Agregar Item</h4>
+<hr>
+<form #form="ngForm" autocomplete="off" (submit) = "onSubmit(form)">
+  <input type="hidden" name ="itemName" #itemName="ngModel" [(ngModel)]="formData.itemName">
+  <input type="hidden" name ="ordersDetailId" #ordersDetailId="ngModel" [(ngModel)]="formData.ordersDetailId">
+  <input type="hidden" name ="ordersId" #ordersId="ngModel" [(ngModel)]="formData.ordersId">
+
+  <div class="form-group">
+      <label>Producto</label>
+      <select name ="itemId" #itemId="ngModel" [(ngModel)]="formData.itemId" class="form-control" (change) = "updatePrice($event.target)"
+        [class.is-invalid] = "!isValid && formData.itemId == 0">
+        <option value="0">-Seleccione-</option>  
+        <option *ngFor = "let item of itemList " value ="{{item.itemId}}">{{item.name}}</option>
+    </select>  
+  </div>
+
+  <div class="form-row">
+    
+    <div class="form-group col-md-6">
+      <label>Precio</label>
+      <div class="input-group">
+          <div class="input-group-prepend">
+            <div class="input-group-text">$</div>
+          </div>
+          <input name ="Precio" #Precio="ngModel" [(ngModel)]="formData.Precio" class="form-control" readonly>
+      </div>
+    </div>
+
+    <div class="form-group col-md-6">
+        <label>Cantidad</label>
+          <input name ="Quantity" #Quantity="ngModel" [(ngModel)]="formData.Quantity" class="form-control" (keyup) = "updateTotal()"
+          [class.is-invalid] = "!isValid && formData.Quantity == 0">
+    </div>
+
+  </div>    
+
+  <div class="form-group">
+      <label>Total</label>
+      <div class="input-group">
+          <div class="input-group-prepend">
+            <div class="input-group-text">$</div>
+          </div>
+          <input name ="Total" #Total="ngModel" [(ngModel)]="formData.Total" class="form-control" readonly>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <button type="submit" class="btn btn-dark"><i class="fa fa-database"></i> Aceptar</button>
+      <button type="button" class="btn btn-outline-dark ml-1" [mat-dialog-close]><i class="fa fa-close"></i> Cancelar</button>
+    </div>
+    
+  </form>

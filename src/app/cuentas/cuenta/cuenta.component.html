@@ -1,0 +1,61 @@
+<mat-toolbar>
+  <span>{{service.form.controls['$key'].value?"Modificar Cuenta":"Nueva Cuenta"}}</span>
+  <span class="fill-remaining-space"></span>
+  <button class="btn-dialog-close" mat-stroked-button (click)="onClose()" tabindex="-1"><mat-icon>clear</mat-icon></button>  
+</mat-toolbar>
+
+<form [formGroup] = "service.form" class="normal-form" (submit) = "onSubmit()">
+  <mat-grid-list cols = "2" rowHeight = "350px">
+
+    <mat-grid-tile>
+      <div class="controles-container">
+        <input type="hidden" formControlName="$key">  
+        <mat-form-field>
+          <input formControlName = "idCuenta" matInput placeholder="Código*">  
+          <mat-error *ngIf="service.form.controls['idCuenta'].errors?.required">Este campo es obligatorio.</mat-error>
+          <mat-error *ngIf="service.form.controls['idCuenta'].errors?.minlength">Este campo requiere mínimimo 6 caracteres.</mat-error>
+          <mat-error *ngIf="service.form.controls['idCuenta'].errors?.pattern">Este campo solo admite números.</mat-error>
+      </mat-form-field>
+
+        <mat-form-field>
+            <input formControlName = "descripcion" matInput placeholder="Descripción*">  
+            <mat-error *ngIf="service.form.controls['descripcion'].errors?.required">Este campo es obligatorio.</mat-error>
+            <mat-error *ngIf="service.form.controls['descripcion'].errors?.minlength">Este campo requiere mínimimo 5 caracteres.</mat-error>
+          </mat-form-field>
+
+      </div>
+
+    </mat-grid-tile>
+
+    <mat-grid-tile>
+      <div class="controles-container">
+          <mat-form-field>
+              <mat-select formControlName = "idTipoCuenta" placeholder = "Tipo">
+                <mat-option>None</mat-option>
+                <ng-container *ngFor = "let tipo of tipoCuentaService.tipoCuentaList">
+                  <mat-option value = "{{tipo.idTipoCuenta}}">{{tipo.descripcion}}</mat-option>
+                </ng-container>
+              </mat-select>
+          </mat-form-field>
+  
+          <div class = "add-bottom-padding ">
+            <mat-checkbox formControlName = "recibeasientos">Recibe Asientos</mat-checkbox>
+          </div>
+  
+          <div class = "add-bottom-padding ">
+              <mat-checkbox formControlName = "ajustable">Ajustable</mat-checkbox>
+          </div>
+
+          <div class = "add-bottom-padding ">
+              <mat-checkbox formControlName = "activo">Activa</mat-checkbox>
+          </div>
+  
+          <div class = "button-row">
+            <button mat-raised-button color = "primary" type = "submit" [disabled] = "service.form.invalid">Aceptar</button>
+            <button mat-raised-button color = "warn" (click) = "onClear()" >Limpiar</button>
+          </div>
+  
+      </div>
+    </mat-grid-tile>
+  </mat-grid-list>
+</form>
