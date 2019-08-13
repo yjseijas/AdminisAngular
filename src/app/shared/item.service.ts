@@ -1,12 +1,19 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ItemService {
   rootUrl = '';
-
+  formItem : FormGroup = new FormGroup({
+    $key : new FormControl(null), 
+    name : new FormControl('',[Validators.required,Validators.minLength(10)]),
+    price : new FormControl('',Validators.required),
+    hireDate : new FormControl('',Validators.required),
+    activo : new FormControl(false)  
+  });
   constructor(private http : HttpClient) { }
 
   getItemList(){
@@ -18,4 +25,15 @@ export class ItemService {
 
     return this.http.get(this.rootUrl).toPromise(); 
   }
+
+  initialiazeFormGroup() {
+    this.formItem.setValue({
+      $key : null, 
+      name :'',
+      price : '',
+      hireDate : '',
+      activo : false  
+    });
+  }
+
 }

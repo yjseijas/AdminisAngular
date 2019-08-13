@@ -38,6 +38,9 @@ import { BillsComponent } from './bills/bills.component';
 import { BillService } from './shared/bill.service';
 import { BillItemsComponent } from './bills/bill-items/bill-items.component';
 import { BillListComponent } from './bills/bill-list/bill-list.component';
+import { ItemService } from './shared/item.service';
+import { ItemsComponent } from './items/items.component';
+import { ItemComponent } from './items/item/item.component';
 
   
 @NgModule({
@@ -53,7 +56,7 @@ import { BillListComponent } from './bills/bill-list/bill-list.component';
     MenuComponent,routingComponents,HomeComponent,
     SidenavComponent,UserComponent,LoginComponent,OrdersComponent,OrderComponent,OrderItemsComponent,
     ClienteComponent,ClientesComponent,ClienteListComponent,BillComponent,BillsComponent,BillItemsComponent,
-    BillListComponent
+    BillListComponent,ItemsComponent,ItemComponent
   ],
   imports: [
     BrowserModule,
@@ -64,7 +67,8 @@ import { BillListComponent } from './bills/bill-list/bill-list.component';
     AppRoutingModule
   ],
   providers: [CuentaService,
-    EmployeeService,TiposCuentasService,UserService,OrderService,ClienteService,CiudadService,BillService],
+    EmployeeService,TiposCuentasService,UserService,OrderService,
+      ClienteService,CiudadService,BillService,ItemService],
   bootstrap: [AppComponent],
   entryComponents:[EmployeeComponent,MatConfirmDialogComponent,CuentaComponent,
     OrderItemsComponent,ClienteComponent,BillItemsComponent]

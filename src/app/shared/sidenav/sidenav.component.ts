@@ -24,13 +24,13 @@ export class SidenavComponent implements OnInit {
   : [];*/
 
   fillerNav =  [
-    {name : "Home",route : "" , icon : "home"},
+    {name : "Home",route : "" , icon : "home"}, 
     {name : "Cuentas",route : "cuentas" , icon : "account_balance"},
     {name : "Empleados",route : "empleados" , icon : "account_box"},
     {name : "Clientes",route : "clientes" , icon : "people"},
+    {name : "Productos",route : "items", icon : "devices_other"},
     {name : "Ordenes Compra",route : "orders" , icon : "add_shopping_cart"},
     {name : "Facturación",route : "bills" , icon : "monetization_on"}
-
   ]
   
 

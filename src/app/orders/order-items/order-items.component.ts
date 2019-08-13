@@ -7,7 +7,7 @@ import { NgForm } from '@angular/forms';
 import { OrderService } from 'src/app/shared/order.service';
 
 @Component({
-  selector: 'app-order-items',
+  selector: 'app-order-items', 
   templateUrl: './order-items.component.html',
   styleUrls: ['./order-items.component.css']
 })
