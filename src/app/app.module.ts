@@ -41,6 +41,7 @@ import { BillListComponent } from './bills/bill-list/bill-list.component';
 import { ItemService } from './shared/item.service';
 import { ItemsComponent } from './items/items.component';
 import { ItemComponent } from './items/item/item.component';
+import { ItemListComponent } from './items/item-list/item-list.component';
 
   
 @NgModule({
@@ -56,7 +57,7 @@ import { ItemComponent } from './items/item/item.component';
     MenuComponent,routingComponents,HomeComponent,
     SidenavComponent,UserComponent,LoginComponent,OrdersComponent,OrderComponent,OrderItemsComponent,
     ClienteComponent,ClientesComponent,ClienteListComponent,BillComponent,BillsComponent,BillItemsComponent,
-    BillListComponent,ItemsComponent,ItemComponent
+    BillListComponent,ItemsComponent,ItemComponent,ItemListComponent
   ],
   imports: [
     BrowserModule,
@@ -71,6 +72,6 @@ import { ItemComponent } from './items/item/item.component';
       ClienteService,CiudadService,BillService,ItemService],
   bootstrap: [AppComponent],
   entryComponents:[EmployeeComponent,MatConfirmDialogComponent,CuentaComponent,
-    OrderItemsComponent,ClienteComponent,BillItemsComponent]
+    OrderItemsComponent,ClienteComponent,BillItemsComponent,ItemComponent]
 })
 export class AppModule { }

@@ -93,6 +93,8 @@ export class ClienteListComponent implements OnInit {
 
   onEdit(row)
   {
+    alert(row.activo);
+    alert(row.fechaAlta);
     this.service.populateForm(row);
 
     /*const dialogConfig = new MatDialogConfig();
