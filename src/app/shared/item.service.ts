@@ -23,10 +23,8 @@ export class ItemService {
 
   getItemList(){
 
-  //this.rootUrl = 'http://localhost:64705/api/ItemsApi?idCompany=99';
-
+  //this.rootUrl =    'http://localhost:64705/api/ItemsApi?idCompany=99';
   this.rootUrl = 'http://54.94.191.184:1315/api/ItemsApi?idCompany=99';
-
 
     return this.http.get(this.rootUrl).toPromise(); 
   }
@@ -45,9 +43,8 @@ export class ItemService {
   // YJS 140819
   getItems() :Observable<Item[]> {
 
-  this.rootUrl = 'http://localhost:64705/api/ItemsApi?idCompany=99';
-
-//  this.rootUrl = 'http://54.94.191.184:1315/api/ItemsApi?idCompany=99';
+  //this.rootUrl =    'http://localhost:64705/api/ItemsApi?idCompany=99';
+  this.rootUrl = 'http://54.94.191.184:1315/api/ItemsApi?idCompany=99';
 
   return this.http.get<Item[]>(this.rootUrl);
 
@@ -56,9 +53,8 @@ export class ItemService {
   // YJS 140819
   postItem(form : Item) { 
 
-  this.rootUrl = 'http://localhost:64705/api/itemsApi?idCompany=99';
-
-//  this.rootUrl = 'http://54.94.191.184:1315/api/ItemsApi?idCompany=99'; 
+  //this.rootUrl =    'http://localhost:64705/api/itemsApi?idCompany=99';
+  this.rootUrl = 'http://54.94.191.184:1315/api/ItemsApi?idCompany=99'; 
 
    this.lSalvo = true;    
    return this.http.post(this.rootUrl,form);  
@@ -67,8 +63,7 @@ export class ItemService {
   // YJS 140819
   deleteItem(idItem : any) {
 
-    this.rootUrl = 'http://localhost:64705/api/ItemsApi/' + idItem + '?idCompany=99';
-
+    //this.rootUrl =    'http://localhost:64705/api/ItemsApi/' + idItem + '?idCompany=99';
     this.rootUrl = 'http://54.94.191.184:1315/api/ItemsApi/' + idItem + '?idCompany=99'; 
 
     return this.http.delete(this.rootUrl);

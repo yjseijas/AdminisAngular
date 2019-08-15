@@ -92,5 +92,27 @@ export class ItemListComponent implements OnInit {
       this.changeDetectorRef.detectChanges();
     }
   }
-  
+//yjs 150819. Happy birthday to me!
+onDelete(row)
+{
+/*    if (confirm('Desea Borrar?'))
+  {
+    this.service.deleteCliente(row.idCliente).subscribe(res =>{
+      this.noti.warning('Registro Borrado.');
+    });
+  }*/
+
+  this.dialogService.openConfimDialog('Seguro de borrar este producto?').
+    afterClosed().subscribe(res => {
+      if (!res)
+      {
+        return;
+      }
+      this.service.deleteItem(row.itemId).subscribe(res =>{
+        this.populateList();
+        this.noti.warning('Registro Borrado.');
+        });
+      });
+}
+
 }
